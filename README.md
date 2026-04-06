@@ -27,8 +27,8 @@ app/
 │       ├── bookings.py     # Bookings
 │       └── rooms.py        # Rooms
 ├── logs
-│   ├── app.log            # App's logs                
-│   └── error.log          # Errors' logs
+│   ├── app.log             # App's logs                
+│   └── error.log           # Errors' logs
 ├── core
 │   ├── config.py           # Configuration
 │   ├── logger.py           # Logger setup
