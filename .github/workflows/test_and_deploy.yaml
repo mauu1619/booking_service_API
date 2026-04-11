@@ -7,6 +7,17 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      redis: 
+        image: redis:7-alpine
+        ports:
+          - '6379:6379'
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: checkout code
         uses: actions/checkout@v4
@@ -30,7 +41,7 @@ jobs:
           ALGORITHM: HS256
           ACCESS_TOKEN_EXPIRE_MINUTES: 210
           REFRESH_TOKEN_EXPIRE_DAYS: 70
-          DUMMY_HASH: test_hash
+          DUMMY_HASH: '$argon2id$v=19$m=16,t=2,p=1$T3B1aVBVR0Rla2dkcXg0Nw$fgXeb8zu8jDh7lXGA6nmXQ'
           SUPERUSER_EMAIL: admin@email.com
           SUPERUSER_PASSWORD: adimin_pass
           MAIL_USERNAME: test_username
