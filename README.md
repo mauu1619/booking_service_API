@@ -2,9 +2,9 @@
 
 REST API for booking service on FastApi.
 
-**Live Demo:** https://booking-api.mau1619.website
+Live Demo: https://booking-api.mau1619.website
 
-**Swagger UI(API docs):** https://booking-api.mau1619.website/docs
+Swagger UI(API docs): https://booking-api.mau1619.website/docs
 
 ## Technology stack
 
