@@ -21,8 +21,9 @@ async def root():
     return {
         "message": "Booking Service API",
         "docs": "/docs",
+        "repository": "https://github.com/mauu1619/booking_service_API",
         "endpoints": {
-            "auth": "/auth/register, /auth/login",
+            "auth": "/auth",
             "rooms": "/rooms",
             "bookings": "/bookings"
         }

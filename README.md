@@ -1,6 +1,10 @@
 # Booking Service API 
 
-REST API for booking service on FastApi with PostgreSQL.
+REST API for booking service on FastApi.
+
+**Live Demo:** https://booking-api.mau1619.website
+
+**Swagger UI(API docs):** https://booking-api.mau1619.website/docs
 
 ## Technology stack
 
@@ -15,6 +19,7 @@ REST API for booking service on FastApi with PostgreSQL.
 - **Pydantic v2**
 - **JWT authentication**
 - **Docker**
+- **GitHub Actions**
 
 ## Project Structure
 
