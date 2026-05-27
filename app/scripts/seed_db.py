@@ -15,7 +15,8 @@ async_session = async_sessionmaker(engine, expire_on_commit=False)
 
 async def seed_data() -> None:
     if settings.model_config.get("env_file") == ".env":
-        # Check ENV from environment as Pydantic settings might not expose it directly depending on config
+        # Check ENV from environment
+
         import os
 
         env = os.getenv("ENV", "dev").lower()
