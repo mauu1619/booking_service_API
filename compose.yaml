@@ -56,7 +56,7 @@ services:
         env_file:
             - .env
         environment:
-            - DATABASE_URL=postgresql+asyncpg://db:5432/${DB_NAME}
+            - DATABASE_URL=postgresql+asyncpg://${DB_USER}:${DB_PASS}@db:5432/${DB_NAME}
             - REDIS_URL=redis://redis:6379
             - UV_CACHE_DIR=/tmp/uv_cache
             - UV_PROJECT_ENVIRONMENT=/app/.venv
@@ -79,7 +79,7 @@ services:
         env_file:
             - .env
         environment:
-            - DATABASE_URL=postgresql+asyncpg://db:5432/${DB_NAME}
+            - DATABASE_URL=postgresql+asyncpg://${DB_USER}:${DB_PASS}@db:5432/${DB_NAME}
             - REDIS_URL=redis://redis:6379
             - UV_CACHE_DIR=/tmp/uv_cache
             - UV_PROJECT_ENVIRONMENT=/app/.venv
