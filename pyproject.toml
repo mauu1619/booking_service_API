@@ -1,7 +1,7 @@
 [project]
 name = "booking-service"
 version = "0.1.0"
-description = "Add your description here"
+description = "Asynchronous booking service API built with FastAPI, SQLModel and Taskiq"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -27,5 +27,37 @@ dependencies = [
     "uvicorn>=0.42.0",
 ]
 
+[project.scripts]
+seed = "app.scripts.seed_db:seed_data"
+create-admin = "app.scripts.create_admin:create_admin"
+
 [dependency-groups]
-dev = []
+dev = [
+    "mypy>=1.15.0",
+    "ruff>=0.9.7",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "B", "UP"]
+ignore = []
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+ignore_missing_imports = true
+exclude = ["migrations"]
+
+[tool.pyright]
+typeCheckingMode = "strict"
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportUnknownParameterType = false
+reportUnknownArgumentType = false
+reportUnusedCallResult = false
+reportMissingTypeStubs = false

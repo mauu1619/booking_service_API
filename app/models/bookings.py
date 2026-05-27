@@ -1,12 +1,10 @@
-from typing import TYPE_CHECKING
-from typing_extensions import Self
-from datetime import date, datetime
+from datetime import date
 from decimal import Decimal
+from typing import TYPE_CHECKING, Self
 
-from sqlmodel import SQLModel, Field, Relationship
-from sqlalchemy import Numeric, Column
 from pydantic import model_validator
-
+from sqlalchemy import Column, Numeric
+from sqlmodel import Field, Relationship, SQLModel
 
 if TYPE_CHECKING:
     from .rooms import Rooms

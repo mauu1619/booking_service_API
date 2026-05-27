@@ -1,10 +1,10 @@
-from decimal import Decimal as D
 from datetime import date
+from decimal import Decimal as D
 
 import pytest
 from httpx import AsyncClient
 
-from app.core.security import decode_token, create_token
+from app.core.security import create_token, decode_token
 
 
 @pytest.mark.asyncio

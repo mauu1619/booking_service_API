@@ -1,20 +1,20 @@
 from decimal import Decimal as D
 
-from sqlmodel import select, func
-from sqlalchemy.ext.asyncio import AsyncSession
 from pydantic import EmailStr
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlmodel import func, select
 
-from app.models import (
-    Rooms, 
-    Users, 
-    UserCreate, 
-    RoomCreate,
-    RoomUpdate,
-    Bookings,
-    BookingCreate,
-    UserRole
-)
 from app.core.security import get_password_hash
+from app.models import (
+    BookingCreate,
+    Bookings,
+    RoomCreate,
+    Rooms,
+    RoomUpdate,
+    UserCreate,
+    UserRole,
+    Users,
+)
 
 
 async def create_user(db: AsyncSession, user: UserCreate) -> Users:

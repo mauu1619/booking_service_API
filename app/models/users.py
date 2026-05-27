@@ -1,17 +1,16 @@
+from enum import StrEnum
 from typing import TYPE_CHECKING
-from enum import Enum
 
 from pydantic import EmailStr
-from sqlmodel import SQLModel, Field, Relationship
-
+from sqlmodel import Field, Relationship, SQLModel
 
 if TYPE_CHECKING:
     from .bookings import Bookings
 
 
-class UserRole(str, Enum):
-    DEFAULT = 'default'
-    ADMIN = 'admin'
+class UserRole(StrEnum):
+    DEFAULT = "default"
+    ADMIN = "admin"
 
 
 class UserBase(SQLModel):
@@ -25,7 +24,9 @@ class Users(UserBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
     hashed_password: str
 
-    bookings: list["Bookings"] = Relationship(back_populates='user', passive_deletes='all')
+    bookings: list["Bookings"] = Relationship(
+        back_populates="user", passive_deletes="all"
+    )
 
 
 class UserCreate(UserBase):

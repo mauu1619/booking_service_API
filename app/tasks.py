@@ -1,8 +1,8 @@
 from datetime import date
 
-from taskiq_redis import ListQueueBroker
-from pydantic import NameEmail
 from fastapi_mail import ConnectionConfig, FastMail, MessageSchema, MessageType
+from pydantic import NameEmail
+from taskiq_redis import ListQueueBroker
 
 from app.core.config import settings
 from app.core.logger import logger
@@ -16,14 +16,16 @@ conf = ConnectionConfig(
     MAIL_SERVER=settings.mail_server,
     MAIL_STARTTLS=True,
     MAIL_SSL_TLS=False,
-    MAIL_FROM="test@example.com"
+    MAIL_FROM="test@example.com",
 )
 
 fm = FastMail(conf)
 
 
 @broker.task
-async def send_booking_email(name: str, email: str, date_from: date, date_to: date, total_cost: str):
+async def send_booking_email(
+    name: str, email: str, date_from: date, date_to: date, total_cost: str
+) -> None:
     logger.info("Email task started", username=name)
     message = MessageSchema(
         subject="Your booking is confirmed!",
@@ -34,11 +36,11 @@ async def send_booking_email(name: str, email: str, date_from: date, date_to: da
             <p>Date end: '{date_to}'</p>
             <p>Cost: {total_cost}</p>
 
-            <i>Have a good days!</i>        
+            <i>Have a good days!</i>
         """,
-        subtype=MessageType.html
+        subtype=MessageType.html,
     )
-    
+
     try:
         await fm.send_message(message)
     except Exception:

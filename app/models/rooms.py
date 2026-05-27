@@ -1,10 +1,10 @@
-from typing import TYPE_CHECKING, Sequence
+from collections.abc import Sequence
 from decimal import Decimal
+from typing import TYPE_CHECKING, ClassVar
 
-from sqlmodel import SQLModel, Field, Relationship
 from pydantic import BaseModel, ConfigDict
 from sqlalchemy import Column, Numeric
-
+from sqlmodel import Field, Relationship, SQLModel
 
 if TYPE_CHECKING:
     from .bookings import Bookings
@@ -25,22 +25,25 @@ class RoomCreate(RoomBase):
     pass
 
 
-class Rooms(RoomsShow, table=True):
+class Rooms(RoomBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
 
-    bookings: list["Bookings"] = Relationship(back_populates='room', passive_deletes='all')
+    bookings: list["Bookings"] = Relationship(
+        back_populates="room", passive_deletes="all"
+    )
 
 
-class RoomUpdate(RoomBase):
+class RoomUpdate(SQLModel):
     title: str | None = None
+    description: str | None = None
     price: Decimal | None = None
     quantity: int | None = None
 
 
 class PaginatedRooms(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
+    model_config: ClassVar[ConfigDict] = ConfigDict(from_attributes=True)
 
     items: Sequence[RoomsShow]
     total: int
-    limit: int 
+    limit: int
     offset: int

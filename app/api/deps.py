@@ -1,14 +1,14 @@
 from typing import Annotated
 
 from fastapi import Depends, HTTPException, status
-from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.security import OAuth2PasswordBearer
 from loguru import logger
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import decode_token
-from app.db.session import get_session
-from app.models import Users, UserRole
 from app.db.crud import get_user
+from app.db.session import get_session
+from app.models import UserRole, Users
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login", refreshUrl="auth/refresh")
 

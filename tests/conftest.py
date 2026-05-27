@@ -1,15 +1,14 @@
 import asyncio
 from collections.abc import AsyncGenerator
 
-import pytest 
-from sqlmodel import SQLModel
+import pytest
 from httpx import ASGITransport, AsyncClient
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlmodel import SQLModel
 
-from app.db.session import get_session
-from app import models
-from app.main import app
 from app.core.security import create_token, get_password_hash
+from app.db.session import get_session
+from app.main import app
 
 TEST_DATABASE_URL = "sqlite+aiosqlite:///:memory:"
 
@@ -52,7 +51,7 @@ async def client(db_session: AsyncSession) -> AsyncGenerator[AsyncClient, None]:
 
 @pytest.fixture
 async def test_user(db_session: AsyncSession):
-    from app.models import Users, UserRole
+    from app.models import UserRole, Users
 
     user = Users(
         username="test_user",
@@ -69,7 +68,7 @@ async def test_user(db_session: AsyncSession):
 
 @pytest.fixture
 async def another_user(db_session: AsyncSession):
-    from app.models import Users, UserRole
+    from app.models import UserRole, Users
 
     user = Users(
         username="another_user",
@@ -86,7 +85,7 @@ async def another_user(db_session: AsyncSession):
 
 @pytest.fixture
 async def admin_user(db_session: AsyncSession):
-    from app.models import Users, UserRole
+    from app.models import UserRole, Users
 
     admin = Users(
         username="admin_user",
